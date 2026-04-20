@@ -45,6 +45,12 @@ let shows = [
   { title: "Vinland Saga", imageURL: VINLAND_SAGA_URL }, 
 ];
 
+let recentlyWatched = [
+  { title: "Jujutsu Kaisen", imageURL: "" },
+  { title: "Demon Slayer", imageURL: "" },
+  { title: "Chainsaw Man", imageURL: "" },
+];
+
 // This function adds cards to the page to display the data in the array
 function showCards() {
   const cardContainer = document.getElementById("card-container");
@@ -68,6 +74,20 @@ function showCards() {
   }
 }
 
+function showRecentCards() {
+  const recentContainer = document.getElementById("recent-card-container");
+  recentContainer.innerHTML = "";
+
+  const templateCard = document.querySelector(".card");
+
+  for (let i = 0; i < recentlyWatched.length; i++) {
+    let { title, imageURL } = recentlyWatched[i];
+    const nextCard = templateCard.cloneNode(true);
+    editCardContent(nextCard, title, imageURL);
+    recentContainer.appendChild(nextCard);
+  }
+}
+
 // Helper function to update a single card
 function editCardContent(card, newTitle, newImageURL) {
   card.style.display = "block"; // Make the cloned card visible
@@ -83,7 +103,10 @@ function editCardContent(card, newTitle, newImageURL) {
 }
 
 // Called when the page loads
-document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", () => {
+  showCards();
+  showRecentCards();
+});
 
 // Example button function
 function quoteAlert() {

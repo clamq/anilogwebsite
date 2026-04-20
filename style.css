@@ -34,6 +34,15 @@ body {
   margin: 5px;
 }
 
+#recent-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 12px;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
 .catalog-title {
   font-size: 23px;
   margin: 20px 0 10px 20px; /* top, right, bottom, left — the left matches your container padding */
