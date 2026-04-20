@@ -34,6 +34,13 @@ const DR_STONE_URL =
   const VINLAND_SAGA_URL =
   "https://substackcdn.com/image/fetch/$s_!SqGk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48f29ebe-ad6d-422e-9be1-21834a3d7b46_640x918.jpeg";
 
+  const REZE_URL =
+  "";
+  const MARIO_GALAXY_URL =
+  "";
+  const PROJECT_HAIL_MARY_URL =
+  "";
+
 
 
 // Array of TV shows with titles and image URLs
@@ -46,9 +53,9 @@ let shows = [
 ];
 
 let recentlyWatched = [
-  { title: "Jujutsu Kaisen", imageURL: "" },
-  { title: "Demon Slayer", imageURL: "" },
-  { title: "Chainsaw Man", imageURL: "" },
+  { title: "Chainsaw Man: Reze Movie", imageURL: REZE_URL},
+  { title: "Super Mario Galaxy", imageURL: MARIO_GALAXY_URL },
+  { title: "Project Hail Mary", imageURL: PROJECT_HAIL_MARY_URL },
 ];
 
 // This function adds cards to the page to display the data in the array
