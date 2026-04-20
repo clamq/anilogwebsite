@@ -23,20 +23,26 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
+const ONE_PIECE_URL =
+  "https://preview.redd.it/if-u-had-to-describe-luffy-in-one-sentence-what-would-that-v0-73l9fu17ynbf1.jpeg?width=640&crop=smart&auto=webp&s=5bd8d9713dda742e75c19b0604ff21fa6129e831";
 const MOB_PSYCHO_100_URL =
   "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/mobpsycho100.png";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
+const DR_STONE_URL =
+  "https://substackcdn.com/image/fetch/$s_!zKdV!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7b606a04-48f4-48a4-8551-a715e4823dec_425x600.jpeg";
+  const STEINS_GATE_URL =
+  "https://m.media-amazon.com/images/M/MV5BZjI1YjZiMDUtZTI3MC00YTA5LWIzMmMtZmQ0NTZiYWM4NTYwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg";
+  const VINLAND_SAGA_URL =
+  "https://substackcdn.com/image/fetch/$s_!SqGk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48f29ebe-ad6d-422e-9be1-21834a3d7b46_640x918.jpeg";
+
+
 
 // Array of TV shows with titles and image URLs
 let shows = [
-  { title: "One Piece", imageURL: FRESH_PRINCE_URL },
+  { title: "One Piece", imageURL: ONE_PIECE_URL },
   { title: "Mob Psycho 100", imageURL: MOB_PSYCHO_100_URL },
-  { title: "Dr. Stone", imageURL: EAST_LOS_HIGH_POSTER_URL },
-  { title: "Steins; Gate", imageURL: "" }, // fallback will be used
-  { title: "Vinland Saga", imageURL: "" }, // fallback will be used
+  { title: "Dr. Stone", imageURL: DR_STONE_URL },
+  { title: "Steins; Gate", imageURL: STEINS_GATE_URL }, 
+  { title: "Vinland Saga", imageURL: VINLAND_SAGA_URL }, 
 ];
 
 // This function adds cards to the page to display the data in the array
