@@ -25,48 +25,46 @@
 
 const FRESH_PRINCE_URL =
   "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
+const MOB_PSYCHO_100_URL =
+  "https://kommodo.ai/i/2f4uYNn8gmm2TkKjg8mu";
 const EAST_LOS_HIGH_POSTER_URL =
   "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
 
-// This is an array of strings (TV show titles)
-let titles = [
-  "Fresh Prince of Bel Air",
-  "Curb Your Enthusiasm",
-  "East Los High",
+// Array of TV shows with titles and image URLs
+let shows = [
+  { title: "One Piece", imageURL: FRESH_PRINCE_URL },
+  { title: "Mob Psycho 100", imageURL: MOB_PSYCHO_100_URL },
+  { title: "Dr. Stone", imageURL: EAST_LOS_HIGH_POSTER_URL },
+  { title: "Steins; Gate", imageURL: "" }, // fallback will be used
+  { title: "Vinland Saga", imageURL: "" }, // fallback will be used
 ];
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
 
-// This function adds cards the page to display the data in the array
+// This function adds cards to the page to display the data in the array
 function showCards() {
   const cardContainer = document.getElementById("card-container");
-  cardContainer.innerHTML = "";
+  cardContainer.innerHTML = ""; // Clear previous cards
+
   const templateCard = document.querySelector(".card");
+  if (!templateCard) {
+    console.error("Template card not found in HTML!");
+    return;
+  }
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
+  for (let i = 0; i < shows.length; i++) {
+    let { title, imageURL } = shows[i];
 
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
-    } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
-    } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
-    }
+    // Fallback image if none provided
+    imageURL = imageURL || "https://via.placeholder.com/340";
 
-    const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
-    cardContainer.appendChild(nextCard); // Add new card to the container
+    const nextCard = templateCard.cloneNode(true); // Copy the template
+    editCardContent(nextCard, title, imageURL); // Set title and image
+    cardContainer.appendChild(nextCard); // Add card to container
   }
 }
 
+// Helper function to update a single card
 function editCardContent(card, newTitle, newImageURL) {
-  card.style.display = "block";
+  card.style.display = "block"; // Make the cloned card visible
 
   const cardHeader = card.querySelector("h2");
   cardHeader.textContent = newTitle;
@@ -75,23 +73,28 @@ function editCardContent(card, newTitle, newImageURL) {
   cardImage.src = newImageURL;
   cardImage.alt = newTitle + " Poster";
 
-  // You can use console.log to help you debug!
-  // View the output by right clicking on your website,
-  // select "Inspect", then click on the "Console" tab
-  console.log("new card:", newTitle, "- html: ", card);
+  console.log("Added card:", newTitle);
 }
 
-// This calls the addCards() function when the page is first loaded
+// Called when the page loads
 document.addEventListener("DOMContentLoaded", showCards);
 
+// Example button function
 function quoteAlert() {
   console.log("Button Clicked!");
   alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!",
+    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
   );
 }
 
+// Remove the last card from the array and refresh the display
 function removeLastCard() {
-  titles.pop(); // Remove last item in titles array
-  showCards(); // Call showCards again to refresh
+  shows.pop(); // Remove last item
+  showCards(); // Refresh cards
+}
+
+// Optional: Add a new card dynamically
+function addCard(title, imageURL) {
+  shows.push({ title, imageURL });
+  showCards();
 }
