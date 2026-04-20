@@ -26,7 +26,7 @@
 const FRESH_PRINCE_URL =
   "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
 const MOB_PSYCHO_100_URL =
-  "https://kommodo.ai/i/2f4uYNn8gmm2TkKjg8mu";
+  "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/mobpsycho100.png";
 const EAST_LOS_HIGH_POSTER_URL =
   "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
 
