@@ -148,25 +148,59 @@ function addCard(title, imageURL) {
 }
 
 function sortByScore() {
+
+  // grab what the user selected from the dropdown
   const order = document.getElementById("score-filter").value;
 
-  const sortedShows = [...shows].sort((a, b) =>
-    order === "asc" ? a.score - b.score : b.score - a.score
-  );
-  const sortedRecent = [...recentlyWatched].sort((a, b) =>
-    order === "asc" ? a.score - b.score : b.score - a.score
-  );
+  // sort a copy of shows
+  let sortedShows;
+  if (order === "asc") {
+    // user picked lowest first — smaller score goes first
+    sortedShows = [...shows].sort((a, b) => a.score - b.score);
+  } else {
+    // user picked highest first — bigger score goes first
+    sortedShows = [...shows].sort((a, b) => b.score - a.score);
+  }
 
+  // same thing for recently watched
+  let sortedRecent;
+  if (order === "asc") {
+    sortedRecent = [...recentlyWatched].sort((a, b) => a.score - b.score);
+  } else {
+    sortedRecent = [...recentlyWatched].sort((a, b) => b.score - a.score);
+  }
+
+  // re-render both sections with the sorted results
   showCards(sortedShows);
   showRecentCards(sortedRecent);
+
 }
 
 function filterByStatus() {
+
+  // grab what the user selected from the dropdown
   const selected = document.getElementById("status-filter").value;
 
-  const filteredShows = selected === "all" ? shows : shows.filter(s => s.status === selected);
-  const filteredRecent = selected === "all" ? recentlyWatched : recentlyWatched.filter(s => s.status === selected);
+  // figure out which shows to display
+  let filteredShows;
+  if (selected === "all") {
+    // user picked "All" — show everything
+    filteredShows = shows;
+  } else {
+    // user picked a specific status — only keep shows that match
+    filteredShows = shows.filter(s => s.status === selected);
+  }
 
+  // same thing for the recently watched array
+  let filteredRecent;
+  if (selected === "all") {
+    filteredRecent = recentlyWatched;
+  } else {
+    filteredRecent = recentlyWatched.filter(s => s.status === selected);
+  }
+
+  // re-render both sections with the filtered results
   showCards(filteredShows);
   showRecentCards(filteredRecent);
+
 }
