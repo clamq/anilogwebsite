@@ -47,22 +47,22 @@ const DR_STONE_URL =
 
 // Array of TV shows with titles and image URLs
 let shows = [
-  { title: "One Piece", imageURL: ONE_PIECE_URL },
-  { title: "Mob Psycho 100", imageURL: MOB_PSYCHO_100_URL },
-  { title: "Dr. Stone", imageURL: DR_STONE_URL },
-  { title: "Steins; Gate", imageURL: STEINS_GATE_URL }, 
-  { title: "Vinland Saga", imageURL: VINLAND_SAGA_URL }, 
+  { title: "One Piece", imageURL: ONE_PIECE_URL, score: 10.0, status: "Watching"},
+  { title: "Mob Psycho 100", imageURL: MOB_PSYCHO_100_URL, score: 9.5, status: "Completed" },
+  { title: "Dr. Stone", imageURL: DR_STONE_URL, score: 8.8, status: "Watching" },
+  { title: "Steins; Gate", imageURL: STEINS_GATE_URL, score: 9.8, status: "Completed" }, 
+  { title: "Vinland Saga", imageURL: VINLAND_SAGA_URL, score: 9.2, status: "Completed", }, 
 ];
 
 let recentlyWatched = [
-  { title: "Chainsaw Man: Reze Movie", imageURL: REZE_URL},
-  { title: "Super Mario Galaxy", imageURL: MARIO_GALAXY_URL },
-  { title: "Project Hail Mary", imageURL: PROJECT_HAIL_MARY_URL },
-   { title: "Spider-Man: Across the Spider-Verse", imageURL: SPIDERVERSE_URL},
+  { title: "Chainsaw Man: Reze Movie", imageURL: REZE_URL, score: 8.4, status: "Completed"},
+  { title: "Super Mario Galaxy", imageURL: MARIO_GALAXY_URL, score: 7.2, status: "Completed"},
+  { title: "Project Hail Mary", imageURL: PROJECT_HAIL_MARY_URL, score: 8.6, status: "Completed" },
+   { title: "Spider-Man: Across the Spider-Verse", imageURL: SPIDERVERSE_URL, score: 8.5, status: "Completed"},
 ];
 
 // This function adds cards to the page to display the data in the array
-function showCards() {
+function showCards(data = shows) {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = ""; // Clear previous cards
 
@@ -72,34 +72,34 @@ function showCards() {
     return;
   }
 
-  for (let i = 0; i < shows.length; i++) {
-    let { title, imageURL } = shows[i];
+  for (let i = 0; i < data.length; i++) {
+    let { title, imageURL, score, status} = data[i];
 
     // Fallback image if none provided
     imageURL = imageURL || "https://via.placeholder.com/340";
 
     const nextCard = templateCard.cloneNode(true); // Copy the template
-    editCardContent(nextCard, title, imageURL); // Set title and image
+    editCardContent(nextCard, title, imageURL, score, status); // Set title and image
     cardContainer.appendChild(nextCard); // Add card to container
   }
 }
 
-function showRecentCards() {
+function showRecentCards(data = recentlyWatched) {
   const recentContainer = document.getElementById("recent-card-container");
   recentContainer.innerHTML = "";
 
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < recentlyWatched.length; i++) {
-    let { title, imageURL } = recentlyWatched[i];
+  for (let i = 0; i < data.length; i++) {
+    let { title, imageURL, score, status } = data[i];
     const nextCard = templateCard.cloneNode(true);
-    editCardContent(nextCard, title, imageURL);
+    editCardContent(nextCard, title, imageURL, score, status);
     recentContainer.appendChild(nextCard);
   }
 }
 
 // Helper function to update a single card
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, newTitle, newImageURL, newScore, newStatus) {
   card.style.display = "block"; // Make the cloned card visible
 
   const cardHeader = card.querySelector("h2");
@@ -108,6 +108,15 @@ function editCardContent(card, newTitle, newImageURL) {
   const cardImage = card.querySelector("img");
   cardImage.src = newImageURL;
   cardImage.alt = newTitle + " Poster";
+
+  // score
+  const listItems = card.querySelectorAll("li");
+  listItems[0].textContent = "Score: " + newScore + " / 10";
+  listItems[1].textContent = "Status: " + newStatus;
+
+  // color of status
+const statusText = newStatus.toLowerCase().replace(/\s+/g, '-');
+listItems[1].className = `status-${statusText}`;
 
   console.log("Added card:", newTitle);
 }
@@ -136,4 +145,28 @@ function removeLastCard() {
 function addCard(title, imageURL) {
   shows.push({ title, imageURL });
   showCards();
+}
+
+function sortByScore() {
+  const order = document.getElementById("score-filter").value;
+
+  const sortedShows = [...shows].sort((a, b) =>
+    order === "asc" ? a.score - b.score : b.score - a.score
+  );
+  const sortedRecent = [...recentlyWatched].sort((a, b) =>
+    order === "asc" ? a.score - b.score : b.score - a.score
+  );
+
+  showCards(sortedShows);
+  showRecentCards(sortedRecent);
+}
+
+function filterByStatus() {
+  const selected = document.getElementById("status-filter").value;
+
+  const filteredShows = selected === "all" ? shows : shows.filter(s => s.status === selected);
+  const filteredRecent = selected === "all" ? recentlyWatched : recentlyWatched.filter(s => s.status === selected);
+
+  showCards(filteredShows);
+  showRecentCards(filteredRecent);
 }

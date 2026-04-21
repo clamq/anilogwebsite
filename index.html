@@ -12,9 +12,24 @@
     <header class="main-header">
       <h1 class="title">Zach's Show Log</h1>
     </header>
-    <h2 class="catalog-title">My Favorite Shows</h2>
+ <div class="filter-bar">
+  <label for="score-filter">Sort by Score:</label>
+  <select id="score-filter" onchange="sortByScore()">
+    <option value="desc">Highest First</option>
+    <option value="asc">Lowest First</option>
+  </select>
+   <label for="status-filter">Filter by Status:</label>
+  <select id="status-filter" onchange="filterByStatus()">
+    <option value="all">All</option>
+    <option value="Watching">Watching</option>
+    <option value="Completed">Completed</option>
+    <option value="Plan to Watch">Plan to Watch</option>
+    <option value="Dropped">Dropped</option>
+  </select>
+</div>
+    <h2 class="catalog-title">My Favorite Animes</h2>
     <div id="card-container"></div>
-  <h2 class="catalog-title">Recently Watched</h2>
+  <h2 class="catalog-title">Recently Watched Movies</h2>
 <div id="recent-card-container"></div>
     <div class="card" style="display: none">
       <div class="card-content">
@@ -23,13 +38,10 @@
         <ul>
           <li>Bullet Point 1</li>
           <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
         </ul>
       </div>
     </div>
     <div class="footer">
-      <button onclick="quoteAlert()">Get A Quote!</button>
-      <button onclick="removeLastCard()">Remove A Card!</button>
     </div>
   </body>
 </html>

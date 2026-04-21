@@ -1,91 +1,243 @@
-html,
-body {
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600&display=swap');
+
+html, body {
   margin: 0;
   padding: 0;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+  font-family: 'Rajdhani', sans-serif;
 }
 
+/* ---- HEADER ---- */
 .main-header {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding-bottom: 10px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  padding: 20px 0 15px;
+  border-bottom: 3px solid #e63946;
+  text-align: center;
 }
 
 .title {
-  text-align: center;
   margin: 0;
-  font-size: 8em;
-  font-family: "Helvetica";
+  font-size: 6em;
+  font-family: 'Bebas Neue', sans-serif;
   font-weight: normal;
-  color: blue;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 30px rgba(230, 57, 70, 0.5);
+  animation: titleGlow 3s ease-in-out infinite alternate;
 }
 
-#card-container {
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px rgba(230, 57, 70, 0.4); }
+  to   { text-shadow: 0 0 40px rgba(230, 57, 70, 0.9), 0 0 80px rgba(230, 57, 70, 0.3); }
+}
+
+/* ---- FILTER BAR ---- */
+.filter-bar {
   display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 24px;
+  background-color: #1a1a2e;
+  border-bottom: 1px solid #2a2a3e;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: #aaaacc;
   flex-wrap: wrap;
-  justify-content: flex-start; /* left-aligned instead of center */
-  gap: 12px;
-  padding-left: 20px; /* nudge from the edge */
 }
 
-.card {
-  width: 180px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 5px;
+.filter-bar label {
+  color: #e63946;
+  letter-spacing: 0.08em;
 }
 
+.filter-bar select {
+  padding: 6px 12px;
+  font-size: 15px;
+  font-family: 'Rajdhani', sans-serif;
+  border-radius: 6px;
+  border: 1px solid #444466;
+  background-color: #0f0f1a;
+  color: #f0f0f0;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.filter-bar select:hover {
+  border-color: #e63946;
+}
+
+/* ---- SECTION TITLES ---- */
+.catalog-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: #ffffff;
+  letter-spacing: 0.1em;
+  margin: 28px 0 10px 24px;
+  padding-left: 12px;
+  border-left: 4px solid #e63946;
+  text-decoration: none;
+}
+
+/* ---- CARD CONTAINERS ---- */
+#card-container,
 #recent-card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 12px;
-  padding-left: 20px;
-  margin-top: 10px;
+  gap: 16px;
+  padding: 10px 24px 20px;
 }
 
-.catalog-title {
-  font-size: 23px;
-  margin: 20px 0 10px 20px; /* top, right, bottom, left — the left matches your container padding */
-  color: blue; /* whatever fits your theme */
-  padding-left: 20px;  
-  text-decoration: underline;
-  font-family: 'Bebas Neue', sans-serif;
+/* ---- CARDS ---- */
+.card {
+  width: 180px;
+  background-color: #1a1a2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  animation: cardEntry 0.4s ease both;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.card-content {
-  padding: 20px;
-  font-family: "Verdana";
-  color: #777;
+@keyframes cardEntry {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.card-content h2 {
-  margin-top: 0;
-  font-size: 20px;
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 32px rgba(230, 57, 70, 0.35);
+  border-color: #e63946;
 }
 
 .card img {
   width: 100%;
-  height: auto;
-  object-fit: cover; 
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
+.card:hover img {
+  transform: scale(1.08);
+}
+
+.card-content {
+  padding: 10px 12px 12px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #ccccdd;
+}
+
+.card-content h2 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.card-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ---- SCORE BADGE ---- */
+.card-content ul li:first-child {
+  background: #333355;
+  border: none;
+  border-radius: 20px;
+  padding: 4px 10px;
+  color: #ffd166;
+  font-weight: 600;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+
+.card:hover .card-content ul li:first-child {
+  background: #4a4a88;
+}
+
+/* ---- STATUS BADGE ---- */
+.card-content ul li:nth-child(2) {
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.card:hover .card-content ul li:nth-child(2) {
+  transform: scale(1.05);
+}
+
+/* color-coded status — checks the text content via JS class trick */
+.card-content ul li.status-watching {
+  background-color: #1e4d1e;
+  color: #b1c425;
+  box-shadow: 0 0 8px rgba(177, 196, 37, 0.3);
+}
+
+.card-content ul li.status-completed {
+  background-color: #0e3d4d;
+  color: #1bbcdb;
+  box-shadow: 0 0 8px rgba(27, 188, 219, 0.3);
+}
+
+.card-content ul li.status-plan {
+  background-color: #4a3d00;
+  color: #ffd654;
+  box-shadow: 0 0 8px rgba(255, 214, 84, 0.3);
+}
+
+.card-content ul li.status-dropped {
+  background-color: #4a1a00;
+  color: #fa882d;
+  box-shadow: 0 0 8px rgba(250, 136, 45, 0.3);
+}
+
+/* ---- FOOTER ---- */
 .footer {
   display: flex;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 0px; /* 0 grey bar at bottom */
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-top: 3px solid #e63946;
+  padding: 14px 0;
+  margin-top: 40px;
+  gap: 12px;
 }
 
 button {
-  text-align: center;
-  background-color: #666;
+  background-color: #e63946;
   border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 40px;
-  border-radius: 10px;
+  padding: 0 22px;
+  height: 42px;
+  border-radius: 8px;
   color: white;
-  font-size: 22px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
   cursor: pointer;
-  margin: 5px;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+button:hover {
+  background-color: #c1121f;
+  transform: translateY(-2px);
 }
