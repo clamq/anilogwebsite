@@ -35,11 +35,13 @@ const DR_STONE_URL =
   "https://substackcdn.com/image/fetch/$s_!SqGk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48f29ebe-ad6d-422e-9be1-21834a3d7b46_640x918.jpeg";
 
   const REZE_URL =
-  "";
+  "https://preview.redd.it/chainsaw-man-the-movie-reze-arc-new-key-visual-v0-4wz87x2oz0tf1.jpeg?width=640&crop=smart&auto=webp&s=5c8e786e72bb9d3747fc7b0f0564d107a822a516";
   const MARIO_GALAXY_URL =
-  "";
+  "https://www.santacruzcinema.com/wp-content/uploads/sites/2/2026/01/HO00002126.jpeg?w=1213";
   const PROJECT_HAIL_MARY_URL =
-  "";
+  "https://s3.amazonaws.com/nightjarprod/content/uploads/sites/122/2026/02/09153701/1Sheet_Hero_DOM_AW_ProjectHailMary-copy-scaled.jpeg";
+  const SPIDERVERSE_URL =
+  "https://loyolamaroon.com/wp-content/uploads/2023/09/Across-the-Spiderverse-IMDb.jpeg";
 
 
 
@@ -56,6 +58,7 @@ let recentlyWatched = [
   { title: "Chainsaw Man: Reze Movie", imageURL: REZE_URL},
   { title: "Super Mario Galaxy", imageURL: MARIO_GALAXY_URL },
   { title: "Project Hail Mary", imageURL: PROJECT_HAIL_MARY_URL },
+   { title: "Spider-Man: Across the Spider-Verse", imageURL: SPIDERVERSE_URL},
 ];
 
 // This function adds cards to the page to display the data in the array
